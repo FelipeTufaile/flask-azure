@@ -1,4 +1,7 @@
 import requests
+import pandas as pd
+import numpy as np
+from sklearn.datasets import fetch_california_housing
 
 def ddgquery(query):
     URL = "https://duckduckgo.com/?q=" + query + "&format=json&pretty=0"
@@ -24,6 +27,12 @@ def weather(latitude, longitude):
     KEY = "ed38d2abac6e6aded3cf1ed68fddb3c6"
     URL = f'https://api.openweathermap.org/data/2.5/weather?lat=' + str(latitude) + '&lon=' + str(longitude) + '&appid='+ KEY
     return requests.get(URL).json()
+
+def housing(age):
+    data = fetch_california_housing(as_frame=True)
+    tb_housing = data.data
+    response = list(tb_housing.loc[tb_housing['HouseAge']>age]['HouseAge'])
+    return response
 
 # Teste	
 # print(ddgquery("Madonna"))

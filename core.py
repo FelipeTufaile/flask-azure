@@ -60,4 +60,8 @@ def ether():
 @app.route('/weather/<lat>/<lon>')
 def weather(lat, lon):
     return insperds.weather(lat, lon)
+
+@app.route('/housing/<age>')
+def housing(age):
+    return insperds.housing(age)
             
